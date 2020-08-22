@@ -1,7 +1,4 @@
---OBS: As tabelas são criadas abaixo com algumas incosistencias que são alteradas nos ALTER TABLE
 
-
---Criação
 CREATE DATABASE Condominio;
 
 use Condominio;
@@ -14,7 +11,7 @@ estado int,
 cidade VARCHAR(60),
 bairro VARCHAR(60),
 rua VARCHAR(60),
-numero varchar(3),
+numero int,
 PRIMARY KEY (id_condominio)
 );
 
@@ -46,6 +43,7 @@ id_entidade int not null,
 id_condominio int not null,
 indicador_sindico bit,
 indicador_subsindico bit,
+ativo bit,
 PRIMARY KEY(id_sindico),
 FOREIGN KEY (id_entidade) REFERENCES entidade(id_entidade),
 FOREIGN KEY (id_condominio) REFERENCES condominio(id_condominio)
@@ -56,7 +54,6 @@ id_contato int IDENTITY(1,1),
 id_entidade int not null,
 tipo int,
 informacao VARCHAR(60),
-ativo bit,
 PRIMARY KEY(id_contato),
 FOREIGN KEY (id_entidade) REFERENCES entidade(id_entidade)
 );
@@ -78,7 +75,5 @@ FOREIGN KEY (id_estado) REFERENCES estado(id_estado)
 );
 
 
---Alteração
-ALTER TABLE condominio ALTER COLUMN numero int;
-ALTER TABLE sindico ADD ativo bit;
-ALTER TABLE contato DROP COLUMN ativo;
+
+
